@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/makestories/static/css/main.19728a64.chunk.css",
-    "main.js": "/makestories/static/js/main.93e94807.chunk.js",
+    "main.js": "/makestories/static/js/main.1c0bd3ae.chunk.js",
     "runtime-main.js": "/makestories/static/js/runtime-main.1e35989c.js",
     "static/css/2.7b9c825f.chunk.css": "/makestories/static/css/2.7b9c825f.chunk.css",
     "static/js/2.22d12e8b.chunk.js": "/makestories/static/js/2.22d12e8b.chunk.js",
@@ -17,6 +17,6 @@
     "static/css/2.7b9c825f.chunk.css",
     "static/js/2.22d12e8b.chunk.js",
     "static/css/main.19728a64.chunk.css",
-    "static/js/main.93e94807.chunk.js"
+    "static/js/main.1c0bd3ae.chunk.js"
   ]
 }
