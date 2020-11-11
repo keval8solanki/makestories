@@ -226,7 +226,7 @@ export default function SignInPage() {
                         <Label htmlFor="state" >State *</Label>
                         <Input
                             name="state"
-                            value={lastName}
+                            value={state}
                             onChange={(e) => setState(e.target.value)}
                             type="text"
                             success={validateText(state)}

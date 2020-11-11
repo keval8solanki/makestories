@@ -34,8 +34,7 @@ export default function LoginPage() {
                 history.push(`/user/${data.userData._id}`)
             }
         } catch (error) {
-            console.error(error)
-            defaultToast.error('Invalid Credentials')
+            defaultToast.error(error)
         }
 
     }
@@ -68,7 +67,7 @@ export default function LoginPage() {
                     error={password && !validatePassword(password)}
                     success={validatePassword(password)} />
 
-                <Button margin="10px 0px" color="white" backgroundColor={colors.GREEN} disabled={!isInputValid} type="submit">Login</Button>
+                <Button margin="10px 0px" color="white" backgroundColor={colors.SUCCESS} disabled={!isInputValid} type="submit">Login</Button>
                 <Link style={{ marginTop: "20px" }} to="/signup">Need an account?</Link>
             </InputContainer>
             <DisplayImage src={LoginSVG} alt="Login" />
