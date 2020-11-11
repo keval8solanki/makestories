@@ -18,8 +18,13 @@ export default function LoginPage() {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const [buttonText, setButtonText] = useState('Login')
+    const [isLoading, setIsLoading] = useState(false)
+
     const submitHandler = async (e) => {
         e.preventDefault()
+        setButtonText('Verifying...')
+        setIsLoading(true)
         const credentials = {
             email,
             password
@@ -28,13 +33,17 @@ export default function LoginPage() {
         const encryptedData = encryptData(JSON.stringify(credentials))
         try {
             const { data } = await axios.post(`${api.URL}/login`, { data: encryptedData }, { withCredentials: true })
+            setButtonText('Login')
+            setIsLoading(false)
             if (data) {
                 dispatch(setCurrentUser(data.userData))
                 dispatch(setAuthentication(true))
                 history.push(`/user/${data.userData._id}`)
             }
         } catch (error) {
-            defaultToast.error(error)
+            setButtonText('Login')
+            setIsLoading(false)
+            defaultToast.error('Invalid Credentials')
         }
 
     }
@@ -67,7 +76,7 @@ export default function LoginPage() {
                     error={password && !validatePassword(password)}
                     success={validatePassword(password)} />
 
-                <Button margin="10px 0px" color="white" backgroundColor={colors.SUCCESS} disabled={!isInputValid} type="submit">Login</Button>
+                <Button margin="10px 0px" color="white" backgroundColor={colors.SUCCESS} disabled={!isInputValid || isLoading} type="submit">{buttonText}</Button>
                 <Link style={{ marginTop: "20px" }} to="/signup">Need an account?</Link>
             </InputContainer>
             <DisplayImage src={LoginSVG} alt="Login" />

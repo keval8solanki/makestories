@@ -54,6 +54,8 @@ export default function EditUserPage() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const [buttonText, setButtonText] = useState('Update')
+    const [isLoading, setIsLoading] = useState(false)
 
 
 
@@ -93,6 +95,8 @@ export default function EditUserPage() {
 
     const submitHandler = async (e) => {
         e.preventDefault()
+        setButtonText('Updating...')
+        setIsLoading(true)
         const userData = {
             firstName,
             lastName,
@@ -118,11 +122,15 @@ export default function EditUserPage() {
 
         try {
             const { data } = await axios.patch(`${api.URL}/user/${_id}`, formData, { withCredentials: true })
+            setButtonText('Update')
+            setIsLoading(false)
             dispatch(setCurrentUser(data.updatedUser))
             history.goBack()
             defaultToast.success('User Edited')
         } catch (error) {
-            defaultToast.error(error)
+            setButtonText('Update')
+            setIsLoading(false)
+            defaultToast.error('Cannot update profile')
         }
 
     }
@@ -264,7 +272,7 @@ export default function EditUserPage() {
                     <Label htmlFor="state" >State *</Label>
                     <Input
                         name="state"
-                        value={lastName}
+                        value={state}
                         onChange={(e) => setState(e.target.value)}
                         type="text"
                         success={validateText(state)}
@@ -320,7 +328,7 @@ export default function EditUserPage() {
                     <Button onClick={cancelHandler} type="button">Cancel</Button>
                     <ButtonContainer style={{ paddingRight: 0 }}>
                         <Button margin="0px 20px" onClick={resetHandler} color="white" backgroundColor="red" type="button">Reset</Button>
-                        <Button color="white" backgroundColor={colors.SUCCESS} disabled={!(isInputValid && isPasswordValid)} type="submit">Update</Button>
+                        <Button color="white" backgroundColor={colors.SUCCESS} disabled={!(isInputValid && isPasswordValid) || isLoading} type="submit">{buttonText}</Button>
 
                     </ButtonContainer>
                 </ButtonContainer>

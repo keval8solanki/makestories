@@ -31,6 +31,9 @@ export default function SignInPage() {
 
     const [isBannerOpen, setIsBannerOpen] = useState(false)
 
+    const [buttonText, setButtonText] = useState('Sign Up')
+    const [isLoading, setIsLoading] = useState(false)
+
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -55,12 +58,13 @@ export default function SignInPage() {
                     <li>Password must contain 1 numeric character (1234)</li>
                 </ul>
             </div>)
-        } 
+        }
     }, [isBannerOpen])
 
     const submitHandler = async e => {
         e.preventDefault()
-
+        setButtonText('Signing up...')
+        setIsLoading(true)
         const userData = {
             firstName,
             lastName,
@@ -85,12 +89,16 @@ export default function SignInPage() {
 
         try {
             const { data } = await axios.post(`${api.URL}/user`, formData, { withCredentials: true })
+            setButtonText('Sign Up')
+            setIsLoading(false)
             dispatch(setCurrentUser(data.savedUserData))
             dispatch(setAuthentication(true))
             history.push(`/user/${data.savedUserData._id}`)
             defaultToast.success('Sign up Success')
         } catch (error) {
-            defaultToast.success(error)
+            setButtonText('Sign Up')
+            setIsLoading(false)
+            defaultToast.success('Cannot Sign up')
         }
     }
 
@@ -267,8 +275,9 @@ export default function SignInPage() {
                             color="white"
                             margin="10px 0px"
                             backgroundColor={colors.BLUE}
-                            disabled={!isInputValid}
-                            type="submit">Sign in
+                            disabled={!isInputValid || isLoading}
+                            type="submit">
+                            {buttonText}
                         </Button> :
                         <Button
                             color="white"
