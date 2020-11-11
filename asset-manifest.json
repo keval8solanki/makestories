@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/makestories/static/css/main.19728a64.chunk.css",
+    "main.js": "/makestories/static/js/main.93e94807.chunk.js",
+    "runtime-main.js": "/makestories/static/js/runtime-main.1e35989c.js",
+    "static/css/2.7b9c825f.chunk.css": "/makestories/static/css/2.7b9c825f.chunk.css",
+    "static/js/2.22d12e8b.chunk.js": "/makestories/static/js/2.22d12e8b.chunk.js",
+    "index.html": "/makestories/index.html",
+    "static/js/2.22d12e8b.chunk.js.LICENSE.txt": "/makestories/static/js/2.22d12e8b.chunk.js.LICENSE.txt",
+    "static/media/edit.836f7dde.svg": "/makestories/static/media/edit.836f7dde.svg",
+    "static/media/login.7691ce84.svg": "/makestories/static/media/login.7691ce84.svg",
+    "static/media/logout.ac15fe02.svg": "/makestories/static/media/logout.ac15fe02.svg",
+    "static/media/signup.02ada2b3.svg": "/makestories/static/media/signup.02ada2b3.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1e35989c.js",
+    "static/css/2.7b9c825f.chunk.css",
+    "static/js/2.22d12e8b.chunk.js",
+    "static/css/main.19728a64.chunk.css",
+    "static/js/main.93e94807.chunk.js"
+  ]
+}
